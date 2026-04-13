@@ -4,7 +4,7 @@
 
 ## 1. 运行前准备
 
-- **MCP 后端**：`serial-mcp-cpp.exe`（安装目录或你解压/放置的位置）
+- **MCP 后端**：`serial_mcp_server.exe`（安装目录或你解压/放置的位置）
 - **推荐**：**`serial_mcp_gui.exe`**（配置参数、生成 Claude MCP 配置、查看串口收发）
 - 串口已连接（常见端口名如 `COM3`、`COM6`）
 
@@ -14,7 +14,7 @@
    双击或运行 `serial_mcp_gui.exe`。
 
 2. **打开「MCP 配置与 Claude 集成」面板**  
-   - **后端类型**：选 **C++**，在浏览框中选择 **`serial-mcp-cpp.exe` 的完整路径**。  
+   - **后端类型**：选 **C++**，在浏览框中选择 **`serial_mcp_server.exe` 的完整路径**。  
    - **传输**：  
      - **stdio**：由 Claude Code 直接启动后端（本机常用）。  
      - **http**：由本程序托管 HTTP MCP，其他设备用 URL 连接。  
@@ -44,13 +44,13 @@
 
 ### 3.1 手写 MCP 配置（stdio）
 
-将下面 `command` 改成你本机 **`serial-mcp-cpp.exe` 的实际路径**：
+将下面 `command` 改成你本机 **`serial_mcp_server.exe` 的实际路径**：
 
 ```json
 {
   "mcpServers": {
     "serial": {
-      "command": "C:\\路径\\serial-mcp-cpp.exe",
+      "command": "C:\\路径\\serial_mcp_server.exe",
       "args": [],
       "env": {
         "SERIAL_MCP_WS_HOST": "127.0.0.1",
@@ -68,7 +68,7 @@
 ```powershell
 $env:SERIAL_MCP_PORT="COM6"
 $env:SERIAL_MCP_BAUDRATE="115200"
-.\serial-mcp-cpp.exe
+.\serial_mcp_server.exe
 ```
 
 > 只有设置了 `SERIAL_MCP_PORT` 时，`SERIAL_MCP_BAUDRATE` 才会生效。
@@ -81,7 +81,7 @@ $env:SERIAL_MCP_HTTP_HOST="0.0.0.0"
 $env:SERIAL_MCP_HTTP_PORT="8443"
 $env:SERIAL_MCP_HTTP_PATH="/mcp"
 $env:SERIAL_MCP_HTTP_TOKEN="your-token"
-.\serial-mcp-cpp.exe
+.\serial_mcp_server.exe
 ```
 
 其他电脑上的客户端示例（把主机名和 Token 换成你的）：

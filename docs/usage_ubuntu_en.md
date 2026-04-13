@@ -4,7 +4,7 @@ For users who already installed the app: **GUI-first** (`serial_mcp_gui`). Comma
 
 ## 1. Before you start
 
-- **MCP backend**: `serial-mcp-cpp` (where your package installed it—often `/usr/local/bin/serial-mcp-cpp`)
+- **MCP backend**: `serial_mcp_server` (where your package installed it—often `/usr/local/bin/serial_mcp_server`)
 - **Recommended**: **`serial_mcp_gui`** (usually alongside the backend from the same distribution)
 - Serial device available (for example `/dev/ttyUSB0`, `/dev/ttyACM0`)
 
@@ -27,7 +27,7 @@ sudo apt-get install -y \
 
 Notes:
 - If you use a fully bundled release directory, you may not need all dev packages.
-- If you build `serial-mcp-cpp` / `serial_mcp_gui` locally, install all packages above.
+- If you build `serial_mcp_server` / `serial_mcp_gui` locally, install all packages above.
 
 ## 3. Serial access (usually required)
 
@@ -43,7 +43,7 @@ sudo usermod -a -G dialout $USER
    Run **`serial_mcp_gui`** from the terminal (full path if it is not on `PATH`) or from your application menu if the installer added one.
 
 2. **Open “MCP Config && Claude Integration”**  
-   - **Backend**: **C++** and the absolute path to **`serial-mcp-cpp`**.  
+   - **Backend**: **C++** and the absolute path to **`serial_mcp_server`**.  
    - **Transport**: **stdio** or **http**.  
    - **WebSocket**: match the backend (default `127.0.0.1` / `8765`).  
    - **Serial (optional)**: e.g. `/dev/ttyUSB0` and baudrate; omit and use `serial_connect` in Claude.
@@ -62,7 +62,7 @@ sudo usermod -a -G dialout $USER
 
 ## 5. Command line and environment (optional)
 
-Replace paths below with the real location of **`serial-mcp-cpp`** on your system.
+Replace paths below with the real location of **`serial_mcp_server`** on your system.
 
 ### 4.1 Hand-written MCP config (stdio)
 
@@ -70,7 +70,7 @@ Replace paths below with the real location of **`serial-mcp-cpp`** on your syste
 {
   "mcpServers": {
     "serial": {
-      "command": "/usr/local/bin/serial-mcp-cpp",
+      "command": "/usr/local/bin/serial_mcp_server",
       "args": [],
       "env": {
         "SERIAL_MCP_WS_HOST": "127.0.0.1",
@@ -86,7 +86,7 @@ Replace paths below with the real location of **`serial-mcp-cpp`** on your syste
 ```bash
 export SERIAL_MCP_PORT=/dev/ttyUSB0
 export SERIAL_MCP_BAUDRATE=115200
-/usr/local/bin/serial-mcp-cpp
+/usr/local/bin/serial_mcp_server
 ```
 
 ### 4.3 HTTP mode
@@ -97,7 +97,7 @@ SERIAL_MCP_HTTP_HOST=0.0.0.0 \
 SERIAL_MCP_HTTP_PORT=8443 \
 SERIAL_MCP_HTTP_PATH=/mcp \
 SERIAL_MCP_HTTP_TOKEN=your-token \
-/usr/local/bin/serial-mcp-cpp
+/usr/local/bin/serial_mcp_server
 ```
 
 Example client on another machine:

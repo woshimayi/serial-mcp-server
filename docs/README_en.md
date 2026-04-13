@@ -19,7 +19,7 @@ There are three roles; you can run them on one machine or split them across seve
 
 | Role | Purpose |
 |------|---------|
-| **MCP backend** (`serial-mcp-cpp`) | Implements MCP and serial I/O; exposes a **WebSocket** service that mirrors traffic to the GUI. |
+| **MCP backend** (`serial_mcp_server`) | Implements MCP and serial I/O; exposes a **WebSocket** service that mirrors traffic to the GUI. |
 | **Claude Code (or another MCP client)** | Talks MCP over **stdio** or **http** (e.g. `serial_write` / `serial_read`). |
 | **GUI** (`serial_mcp_gui`) | Subscribes to the backend **only via WebSocket** to **show** logs and traffic; can also send writes over WS. |
 

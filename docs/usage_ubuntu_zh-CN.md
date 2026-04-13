@@ -4,7 +4,7 @@
 
 ## 1. 运行前准备
 
-- **MCP 后端**：`serial-mcp-cpp`（安装位置以你获得的软件为准，常见为 `/usr/local/bin/serial-mcp-cpp` 或安装包指定目录）
+- **MCP 后端**：`serial_mcp_server`（安装位置以你获得的软件为准，常见为 `/usr/local/bin/serial_mcp_server` 或安装包指定目录）
 - **推荐**：**`serial_mcp_gui`**（与后端在同一安装包/目录中，或发布方单独提供）
 - 串口设备已连接（如 `/dev/ttyUSB0`、`/dev/ttyACM0`）
 
@@ -39,7 +39,7 @@ sudo usermod -a -G dialout $USER
    在终端中运行安装包提供的 **`serial_mcp_gui`**（若桌面有快捷方式也可从菜单启动）。若命令不在默认路径，请使用完整路径，或先 `cd` 到程序所在目录。
 
 2. **打开「MCP 配置与 Claude 集成」面板**  
-   - **后端类型**：选 **C++**，填写 **`serial-mcp-cpp` 的绝对路径**。  
+   - **后端类型**：选 **C++**，填写 **`serial_mcp_server` 的绝对路径**。  
    - **传输**：**stdio** 或 **http**。  
    - **WebSocket**：与后端一致（默认 `127.0.0.1` / `8765`）。  
    - **串口（可选）**：如 `/dev/ttyUSB0` 与波特率；不填则在 Claude 里 `serial_connect`。
@@ -58,7 +58,7 @@ sudo usermod -a -G dialout $USER
 
 ## 5. 命令行与环境变量（辅助）
 
-以下路径请换成你机器上 **`serial-mcp-cpp` 的实际位置**。
+以下路径请换成你机器上 **`serial_mcp_server` 的实际位置**。
 
 ### 4.1 手写 MCP 配置（stdio）
 
@@ -66,7 +66,7 @@ sudo usermod -a -G dialout $USER
 {
   "mcpServers": {
     "serial": {
-      "command": "/usr/local/bin/serial-mcp-cpp",
+      "command": "/usr/local/bin/serial_mcp_server",
       "args": [],
       "env": {
         "SERIAL_MCP_WS_HOST": "127.0.0.1",
@@ -82,7 +82,7 @@ sudo usermod -a -G dialout $USER
 ```bash
 export SERIAL_MCP_PORT=/dev/ttyUSB0
 export SERIAL_MCP_BAUDRATE=115200
-/usr/local/bin/serial-mcp-cpp
+/usr/local/bin/serial_mcp_server
 ```
 
 ### 4.3 HTTP 模式
@@ -93,7 +93,7 @@ SERIAL_MCP_HTTP_HOST=0.0.0.0 \
 SERIAL_MCP_HTTP_PORT=8443 \
 SERIAL_MCP_HTTP_PATH=/mcp \
 SERIAL_MCP_HTTP_TOKEN=your-token \
-/usr/local/bin/serial-mcp-cpp
+/usr/local/bin/serial_mcp_server
 ```
 
 其他机器上的客户端示例：
